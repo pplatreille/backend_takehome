@@ -1,8 +1,7 @@
-import requests
-import json
+import platform
+import subprocess
 
-url = 'http://localhost:8080'
-payload = {'key': 'value'}
-headers = {'Content-Type': 'application/json'}
+command = 'docker ps --filter "label=tag=value" -q'
+output = subprocess.check_output(command, shell=True, universal_newlines=True).strip()
 
-response = requests.get(url, headers=headers)
+subprocess.run(['docker', 'exec', output, 'curl', '-X', 'GET', 'http://127.0.0.1:8080/'])
