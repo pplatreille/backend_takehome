@@ -1,10 +1,11 @@
 # python image with with version 3.11.3
 FROM python:3.11 as flaskapp
 
+
 # Set the working directory in the container
 WORKDIR /
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED =1
 ENV POSTGRES_PASSWORD="database-password"
 ENV POSTGRES_DB="postgres"
 ENV DATABASE_URL=postgresql://postgres:database-password@localhost:5432/postgres?host=/absolute/path/to/project/data
@@ -26,6 +27,7 @@ COPY . .
 
 # Expose the Flask port
 EXPOSE 8080
+EXPOSE 5432
 
 # ENTRYPOINT ["docker-entrypoint.sh"]
 
